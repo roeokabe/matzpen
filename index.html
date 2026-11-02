@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2f5d50">
+  <title>מצפן</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <section id="view-today" class="view">
+      <header class="page-head">
+        <h1 id="today-title">היום</h1>
+        <p id="today-date" class="muted"></p>
+        <button id="back-to-today" class="link" type="button" hidden>חזרה להיום</button>
+      </header>
+
+      <div class="card">
+        <h2>מצב רוח</h2>
+        <div id="mood-scale" class="scale" role="group" aria-label="מצב רוח מ-1 עד 5"></div>
+        <h2 class="spaced">אנרגיה</h2>
+        <div id="energy-scale" class="scale" role="group" aria-label="אנרגיה מ-1 עד 5"></div>
+        <p class="scale-hint muted"><span>נמוך</span><span>גבוה</span></p>
+      </div>
+
+      <div class="card">
+        <h2>שלושת הדברים החשובים</h2>
+        <div id="tasks"></div>
+      </div>
+
+      <div class="card">
+        <label for="note">מה היה משמעותי היום?</label>
+        <textarea id="note" rows="3"></textarea>
+        <label for="strength" class="spaced">במה הצלחתי? איזה כוח עזר לי?</label>
+        <textarea id="strength" rows="2"></textarea>
+        <label for="struggle" class="spaced">מה היה קשה? איפה נתקעתי?</label>
+        <textarea id="struggle" rows="2"></textarea>
+        <p id="save-status" class="muted small" aria-live="polite"></p>
+      </div>
+
+      <div class="card">
+        <button id="day-insight-btn" class="primary" type="button">תובנה מהיום</button>
+        <p id="day-insight-error" class="error" hidden></p>
+        <p id="day-insight" class="insight" hidden></p>
+      </div>
+    </section>
+
+    <section id="view-history" class="view" hidden>
+      <header class="page-head"><h1>היסטוריה</h1></header>
+      <div class="card">
+        <h2>מצב רוח ב-14 הימים האחרונים</h2>
+        <div id="mood-chart" class="chart"></div>
+      </div>
+      <div id="history-list"></div>
+    </section>
+
+    <section id="view-insights" class="view" hidden>
+      <header class="page-head"><h1>דפוסים</h1></header>
+      <div class="card">
+        <p class="muted">ניתוח של עד 30 הימים האחרונים: כוחות, חולשות ומה משפיע על מצב הרוח.</p>
+        <button id="pattern-btn" class="primary" type="button">ניתוח דפוסים</button>
+        <p id="pattern-error" class="error" hidden></p>
+        <p id="pattern-meta" class="muted small" hidden></p>
+        <p id="pattern" class="insight" hidden></p>
+      </div>
+    </section>
+
+    <section id="view-settings" class="view" hidden>
+      <header class="page-head"><h1>הגדרות</h1></header>
+      <div class="card">
+        <label for="api-key">מפתח Claude API</label>
+        <input id="api-key" type="password" autocomplete="off" spellcheck="false" dir="ltr">
+        <button id="save-key" class="secondary" type="button">שמירת המפתח</button>
+        <p id="key-status" class="muted small" aria-live="polite"></p>
+        <p class="muted small">המפתח נשמר רק במכשיר הזה. כדאי להגדיר לו תקרת הוצאה ב-<a href="https://console.anthropic.com" target="_blank" rel="noopener">Claude Console</a>.</p>
+      </div>
+      <div class="card">
+        <h2>הפרטיות שלך</h2>
+        <p class="muted">כל מה שנכתב כאן נשמר במכשיר. טקסטים נשלחים ל-Anthropic רק בלחיצה על "תובנה מהיום" או "ניתוח דפוסים".</p>
+      </div>
+      <div class="card">
+        <h2>גיבוי</h2>
+        <p class="muted">הנתונים קיימים רק בטלפון. כדאי להוריד גיבוי מדי פעם.</p>
+        <button id="export-btn" class="secondary" type="button">הורדת גיבוי</button>
+        <label class="secondary file-btn">שחזור מגיבוי<input id="import-file" type="file" accept="application/json,.json"></label>
+        <p id="backup-status" class="muted small" aria-live="polite"></p>
+      </div>
+      <div class="card">
+        <h2>כשקשה</h2>
+        <p class="muted">מצפן הוא כלי לסדר ולהתבוננות, לא תחליף לטיפול. בכל מצוקה אפשר לפנות אל ער"ן בטלפון <a href="tel:1201">1201</a>, בכל שעה. בסכנה מיידית יש להתקשר ל-<a href="tel:101">101</a>.</p>
+      </div>
+      <div class="card">
+        <button id="wipe-btn" class="danger" type="button">מחיקת כל הנתונים</button>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabs" aria-label="ניווט">
+    <button data-view="today" class="active" type="button">היום</button>
+    <button data-view="history" type="button">היסטוריה</button>
+    <button data-view="insights" type="button">דפוסים</button>
+    <button data-view="settings" type="button">הגדרות</button>
+  </nav>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
