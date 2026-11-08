@@ -48,6 +48,28 @@
       </div>
     </section>
 
+    <section id="view-tasks" class="view" hidden>
+      <header class="page-head">
+        <h1>משימות</h1>
+        <p id="tasks-summary" class="muted"></p>
+      </header>
+
+      <div class="card add-card">
+        <label for="task-input">מה צריך לעשות?</label>
+        <textarea id="task-input" rows="2" placeholder="אפשר לכתוב חופשי, למשל: להתקשר לחברת הביטוח לגבי החידוש של הרכב לפני סוף החודש"></textarea>
+        <button id="task-add" class="primary" type="button">הוספת משימה</button>
+        <p id="task-add-error" class="error" hidden></p>
+      </div>
+
+      <div id="topic-filter" class="chips" role="group" aria-label="סינון לפי נושא"></div>
+      <div id="task-list"></div>
+
+      <details id="done-section" class="done-section" hidden>
+        <summary id="done-summary"></summary>
+        <div id="done-list"></div>
+      </details>
+    </section>
+
     <section id="view-history" class="view" hidden>
       <header class="page-head"><h1>היסטוריה</h1></header>
       <div class="card">
@@ -79,7 +101,7 @@
       </div>
       <div class="card">
         <h2>הפרטיות שלך</h2>
-        <p class="muted">כל מה שנכתב כאן נשמר במכשיר. טקסטים נשלחים ל-Anthropic רק בלחיצה על "תובנה מהיום" או "ניתוח דפוסים".</p>
+        <p class="muted">כל מה שנכתב כאן נשמר במכשיר. טקסטים נשלחים ל-Anthropic רק בלחיצה על "תובנה מהיום" או "ניתוח דפוסים", וכשמוסיפים משימה (כדי לתת לה שם ונושא).</p>
       </div>
       <div class="card">
         <h2>גיבוי</h2>
@@ -98,8 +120,36 @@
     </section>
   </main>
 
+  <dialog id="task-dialog" class="sheet" aria-labelledby="td-title-label">
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <label id="td-title-label" for="td-title">שם המשימה</label>
+    <input id="td-title" type="text" class="title-input">
+    <label for="td-description" class="spaced">תיאור מלא</label>
+    <textarea id="td-description" rows="4"></textarea>
+    <label for="td-topic" class="spaced">נושא</label>
+    <input id="td-topic" type="text" list="topic-options" autocomplete="off">
+    <datalist id="topic-options"></datalist>
+    <h2 class="spaced">חשיבות</h2>
+    <div id="td-importance" class="segmented" role="group" aria-label="חשיבות"></div>
+    <h2 class="spaced">דחיפות</h2>
+    <div id="td-urgency" class="segmented" role="group" aria-label="דחיפות"></div>
+    <p id="td-meta" class="muted small"></p>
+    <button id="td-done" class="primary" type="button"></button>
+    <button id="td-ai" class="secondary" type="button">שם וסיווג אוטומטי</button>
+    <div class="sheet-actions">
+      <button id="td-delete" class="danger" type="button">מחיקה</button>
+      <button id="td-close" class="secondary" type="button">שמירה וסגירה</button>
+    </div>
+  </dialog>
+
+  <div id="update-banner" class="update-banner" hidden>
+    <span>יש גרסה חדשה של מצפן</span>
+    <button id="update-reload" type="button">רענון</button>
+  </div>
+
   <nav class="tabs" aria-label="ניווט">
     <button data-view="today" class="active" type="button">היום</button>
+    <button data-view="tasks" type="button">משימות</button>
     <button data-view="history" type="button">היסטוריה</button>
     <button data-view="insights" type="button">דפוסים</button>
     <button data-view="settings" type="button">הגדרות</button>

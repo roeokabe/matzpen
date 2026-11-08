@@ -1,5 +1,5 @@
 // Bump the version whenever an app file changes, so phones pick up the update.
-const CACHE = 'matzpen-v1';
+const CACHE = 'matzpen-v2';
 const FILES = ['./', 'index.html', 'styles.css', 'app.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', (event) => {
