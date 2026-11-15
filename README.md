@@ -41,7 +41,7 @@ js/settings.js        הגדרות
 ## איך עובדים על הפרויקט
 
 1. **רעיון או תקלה** נרשמים ככרטיס ב-[Issues](https://github.com/roeokabe/matzpen/issues), עם תווית של האלמנט.
-2. **ההתקדמות** מנוהלת ב[לוח הפרויקט](https://github.com/users/roeokabe/projects): רעיונות ← בתכנון ← בעבודה ← הושלם.
+2. **ההתקדמות** מנוהלת ב[לוח הפרויקט](https://github.com/users/roeokabe/projects/1): רעיונות ← בתכנון ← בעבודה ← הושלם.
 3. **כל שינוי נבנה בענף נפרד** (למשל `feature/habits`), כך שהאפליקציה בטלפון ממשיכה לעבוד.
 4. **בסוף נפתחת בקשת מיזוג (Pull Request)**. אחרי בדיקה ואישור, השינוי ממוזג ל-`main` ומגיע לטלפון תוך דקה.
 5. **כל עדכון משמעותי מסומן כגרסה** ב-[Releases](https://github.com/roeokabe/matzpen/releases).
